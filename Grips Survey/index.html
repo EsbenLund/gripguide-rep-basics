@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produkt Anbefalings Quiz</title>
+  <link rel="stylesheet" href="productquiz.css">
+  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+</head>
+<!--JavaScript koden er længere nede blevet kommenteret-->
+<body>
+  <main id="mainQuiz">
+  <div id="quiz-container">
+    <h1 id="quiz-header">FIND DET PERFEKTE GRIP</h1>
+    <p>Ved at besvare disse spørgsmål vil du modtage vores anbefaling til et det par grips, 
+      som vi mener passer bedst til dine behov.</p>
+    <form id="quiz-form">
+      <div class="gripInfoBox">
+      <p><label>1. HVILKET MATERIALE SKAL JEG VÆLGE?</label></p>
+      <p class="gripInfo">
+        For nogen kan grebsstyrke være en grund til at købe grips, 
+        og det kan også være en fordel, hvis man skal lave øvelser i barren i længere tid, f.eks. 
+        mange kipping pull-ups. Det ovenstående materiale er for dig der aldrig vil miste grebsstyrke, selv med (blod,) sved (og tårer) indblandet, 
+        og kan bruges af alle lige fra nybegyndere til konkurrenceatleter.
+      </p>
+      <p class="gripInfo">Er holdbarhed og komfort de vigtigste parametre for dine grips, 
+        så skal du vælge et af de blødere materialer. Med et blødere materiale vil du opleve en god beskyttelse, 
+        men som samtidig er behagelig at bruge. Teknologien bag dette materiale, vil også sikre at du træner din egen grebsstyrke(anbefales til nye crossfit udøvere).</p>
+      </p>
+      </div>
+      <ul>  
+        <li>
+          <p>GREBSSTYRKE - Hvis du skal have et par grips som giver dig maksimal grebsstyrke.</p>
+        </li>
+        <li>
+          <p>HOLDBARHED & KOMFORT - Hvis du ønsker at arbejde på din egen styrke.</p>
+        </li>
+      </ul>
+      <input class="radioStyle" type="radio" name="trait" value="Grebsstyrke"> Grebsstyrke
+      <input class="radioStyle" type="radio" name="trait" value="Holdbarhed & Komfort"> Holdbarhed & Komfort
+      <input class="radioStyle" type="radio" name="trait" value="any"> Ingen præference
+      <div class="gripInfoBox">
+      <p><label>2. HVILKEN MODEL SKAL JEG VÆLGE?</label></p>
+      <p class="gripInfo">
+        3-finger grips er især blevet populære inden for fitness og Crossfit de seneste år. 
+        Disse grips er formet naturligt efter hånden således at du ikke føler du har en plade liggende imellem barre/ringe og håndflade, 
+        når du træner, samt fuld mobilitet i din tommelfinger.
+      </p>
+      <p class="gripInfo">
+        Efter 3-finger grips blev populært, begyndte man at se flere og flere atleter bruge deres grips uden at bruge fingerhullerne. 
+        Det giver et bedre grip, fordi mere af barren er i kontakt med gripfladen og ikke dine fingre. Fingerless grips er for dig der hurtigt vil have dine grips af vejen når du ikke bruger 
+        dem uden at bøvle med at tage dem af og på, og ikke har et behov for at dine grips sidder på en bestemt måde.
+      </p>
+      </div>
+      <ul>
+        <li>
+          <p>3-FINGER - Hvis du ønsker at have et par grips som giver dig mere kontakt med baren.</p>
+        </li>
+        <li>
+          <p>FINGERLESS - Hvis du ønsker at have et par alsidige grips som hurtigt kan bukkes ned mellem mine øvelser.
+          </p>
+        </li>
+        <li>
+          <p>Er du i tvivl, anbefaler vi altid at gå med et par 3-finger.</p>
+        </li>
+      </ul>
+      <input class="radioStyle" type="radio" name="design" value="3-finger"> 3-finger
+      <input class="radioStyle" type="radio" name="design" value="Fingerless"> Fingerless
+      <input class="radioStyle" type="radio" name="design" value="any"> Ingen præference
+      <div class="gripInfoBox">
+      <p><label>3. BELASTNING </label></p>
+      <p class="gripInfo">Grips bliver udsat for en stor belastning under træning. Derfor er det er ikke nogen hemmelighed at de ikke holder for evigt.
+        Derfor er det vigtigt at vælge et par grips som passer til din vægt.
+        Svar venligst på nedenstående spørgsmål, så vi kan udelukke grips som ikke passer til din vægt.
+      </p>
+      </div>
+      <br>
+      <input class="radioStyle" type="radio" name="weightLimit" value="yes"> Jeg vejer over 100kg.
+      <input class="radioStyle" type="radio" name="weightLimit" value="no"> Jeg vejer under 100kg.
+      <br>
+   <a href="#resultGrip"><button id="resultatBtn" type="button" onclick="calculateRecommendation()">FIND MINE GRIPS</button></a>
+    </form>
+
+    <div id="result-container" style="display:none;">
+      <h2>VI ANBEFALER</h2>
+      <div id="recommendation"></div>
+    </div>
+  </div>
+</main>
+  <script>
+    const grips = [{
+        name: 'Repbasics Fingerless Hyper Gymnastic Grips',
+        trait: 'any',
+        design: 'Fingerless',
+        link: 'https://repbasics.dk/shop/repbasics-fingerless-hyper-gymnastic-grips/',
+        pris: '239 DKK',
+        weightLimit: 'yes',
+        img: 'https://repbasics.dk/wp-content/uploads/repbasics-fingerless-hyper-grips-scaled.jpg'
+      },
+      {
+        name: 'Repbasics 3-Finger Carbon Gymnastic Grips V2',
+        trait: 'Grebsstyrke',
+        design: '3-finger',
+        link: 'https://repbasics.dk/shop/repbasics-3-finger-carbon-grips-v2/',
+        pris: '199 DKK',
+        img: 'https://repbasics.dk/wp-content/uploads/repbasics-3finger-carbon-grips-scaled.jpg'
+      },
+      {
+        name: 'Repbasics Fingerless Carbon Gymnastic Grips V2',
+        trait: 'Grebsstyrke',
+        design: 'Fingerless',
+        link: 'https://repbasics.dk/shop/repbasics-fingerless-carbon-grips-v2/',
+        pris: '199 DKK',
+        img: 'https://repbasics.dk/wp-content/uploads/repbasics-fingerless-carbon-grips-scaled.jpg'
+      },
+      {
+        name: 'Repbasics 3-Finger Endurance Gymnastic Grips V2',
+        trait: 'Holdbarhed & Komfort',
+        design: '3-finger',
+        link: 'https://repbasics.dk/shop/repbasics-3-finger-endurance-grips-v2/',
+        pris: '199 DKK',
+        img: 'https://repbasics.dk/wp-content/uploads/repbasics-3finger-endurance-grips-scaled.jpg'
+      },
+      {
+        name: 'Repbasics Fingerless Endurance Gymnastic Grips V2',
+        trait: 'Holdbarhed & Komfort',
+        design: 'Fingerless',
+        link: 'https://repbasics.dk/shop/repbasics-fingerless-endurance-grips-v2/',
+        pris: '199 DKK',
+        img: 'https://repbasics.dk/wp-content/uploads/repbasics-fingerless-endurance-grips-scaled.jpg'
+      },
+    ];
+
+    function calculateRecommendation() {
+  // Find de valgte præferencer fra brugeren
+  const traitPreference = document.querySelector('input[name="trait"]:checked');
+  const designPreference = document.querySelector('input[name="design"]:checked');
+  const weightPreference = document.querySelector('input[name="weightLimit"]:checked');
+
+  // Tjek om brugeren har valgt alle præferencer
+  if (!traitPreference || !designPreference || !weightPreference) {
+    // Hvis en af disse er falsk, vil der blive vist en alert besked til brugeren
+    alert('Besvar venligst skemaet inden du trykker på knappen.');
+    return; // Afslut funktionen, da der ikke er nok information
+  }
+
+  // Funktion der sammenligner brugerens svar med produkterne
+  const matchingProducts = grips.filter(
+    (product) =>
+      (traitPreference.value === 'any' || product.trait === traitPreference.value) &&
+      (designPreference.value === 'any' || product.design === designPreference.value) &&
+      (weightPreference.value === 'no' || (weightPreference.value === 'yes' && product.weightLimit !== 'yes'))
+  );
+
+  // Hvis der ikke er nogen matchende produkter, skal det første produkt vælges
+  const recommendation = matchingProducts.length > 0 ? matchingProducts[0] : grips[0];
+  displayRecommendation(recommendation);
+
+  setTimeout(() => {
+    // Scroll ned til resultat-containeret med et delay på 1sekund
+    document.getElementById('resultGrip').scrollIntoView({
+      behavior: 'smooth',
+    });
+  }, 1000);
+}
+
+    function displayRecommendation(product) {
+      const resultContainer = document.getElementById('result-container');
+      resultContainer.style.display = 'block';
+
+      const recommendationContainer = document.getElementById('recommendation');
+      recommendationContainer.innerHTML = ''; // Fjern tidligere anbefalinger 
+
+      // Vis anbefalinger til brugeren + det indhold som skal vises. 
+      const productElement = document.createElement('div');
+      productElement.innerHTML = `
+        <h2>${product.name}</h2>
+        <p>Pris:${product.pris}</p>
+        <img id="productImg" src="${product.img}" alt="${product.name}">
+        <br>
+        <button id="linkBtn"><a href="${product.link}" target="_blank">GÅ TIL PRODUKTET</a></button>
+        <p>Størrelsesguide finder du på produktsiden</p>
+        <p>Hvis du ønsker at se andre anbefalinger. Kan du nemt gå op og ændre dine
+          svar i spørgeskemaet.</p>
+      `;
+      recommendationContainer.appendChild(productElement);
+    }
+  </script>
+<span id="resultGrip"></span>
+</body>
+
+</html>

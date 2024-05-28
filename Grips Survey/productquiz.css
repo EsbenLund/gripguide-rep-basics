@@ -1,0 +1,88 @@
+*{
+    scroll-behavior: smooth;
+}
+#quiz-container{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-family: 'poppins';
+    list-style: none;
+    width: 90%;;
+    margin-left: 5%;
+    color: #242424;
+
+   
+}
+#quiz-container ,li{
+    list-style: none;
+    font-size: 0.8rem;
+    font-family: 'poppins';
+}
+#quiz-container{
+    min-height: 100vh;
+}
+#resultatBtn ,a{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: 40%;
+    height: 3rem;
+    font-family: 'poppins';
+    border: none;
+    background-color: #242424;
+    color: #f1f1f1;
+    list-style: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+#quiz-header{
+    margin-top: 0.1rem;
+    margin-bottom: 0.1rem;
+    color: #242424;
+    font-size: 1.3rem;
+    
+}
+#quiz-form{
+    font-size: poppins;
+}
+#linkBtn ,a{
+    width: 30%;
+    height: 3rem;
+    background-color: #667861;
+    color:#f1f1f1;
+    text-decoration: none;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+#linkBtn:hover{
+    scale: 1.1;
+    background-color: #242424;
+
+}
+#productImg{
+    width: 35%;
+    box-shadow: 0px 0px 10px 0px #242424;
+    margin-bottom: 1rem;
+}
+.gripInfo{
+    text-align: start;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+.gripInfoBox{
+    background-color:#001524;
+    padding:0.5rem 1rem 0.5rem 1rem;
+    margin-top: 0.5rem;
+    color: #f1f1f1;
+    border-radius: 4px;
+}
+#result-container{
+    margin-top:3rem;
+    min-height: 80vh;
+}
+input[type="radio"]{
+ height:1.2rem;
+ width: 1.2rem;
+ padding: 10px;
+}
